@@ -1,31 +1,36 @@
-# HTTP Header Analyzer
+# HTTP Header Analyzer (Python)
 
-A CLI tool that inspects HTTP response headers and flags missing security headers like CSP, HSTS, and X-Frame-Options.
+Simple CLI tool to check whether a target site returns baseline defensive security headers.
 
 ## Features
 
-- Checks for essential security headers
-- Simple CLI interface
-- Supports HTTP and HTTPS URLs
+- Accepts URLs with or without scheme
+- Follows redirects and prints final URL + status code
+- Reports missing headers:
+  - `Content-Security-Policy`
+  - `Strict-Transport-Security`
+  - `X-Frame-Options`
+  - `X-Content-Type-Options`
+  - `Referrer-Policy`
+  - `Permissions-Policy`
+- Prints server banner when exposed
+
+## Requirements
+
+- Python 3.8+
+- `requests` (from `requirements.txt`)
 
 ## Usage
 
 ```bash
-python header_analyzer.py <url>
-```
-
-### Examples
-
-```bash
+python header_analyzer.py example.com
 python header_analyzer.py https://example.com
-python header_analyzer.py example.com  # Automatically adds https://
 ```
 
-## Requirements
+## Notes
 
-- Python 3.x
-- requests library (`pip install requests`)
+This tool is passive and does not attempt exploitation.
 
 ## License
 
-MIT
+MIT (see `LICENSE`).
